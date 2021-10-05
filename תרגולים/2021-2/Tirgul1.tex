@@ -1,0 +1,227 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 1 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{solution}{Solution Of}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+
+על 
+$\mathbb{R}$
+בדרך כלל מגדירים יחס סדר מלא 
+$\leq$
+עם התכונות הבסיסיות הבאות על ידי:
+
+
+\begin{enumerate}
+\item 
+$a\leq b\Longrightarrow\forall c\in\mathbb{R}: a+c\leq b+c$
+.
+
+\item 
+$a\leq b\Longrightarrow \forall 0\leq c\in\mathbb{R}: a\cdot c\leq b\cdot c$
+.
+\end{enumerate}
+
+\begin{notation}
+אנחנו נאמר ש
+$A\leq b$
+אם לכל 
+$a\in A$
+נקבל ש
+$a\leq b$
+.
+\end{notation}
+
+\begin{definition}
+נאמר כי איבר b הוא מקסימום של קבוצה A אם הוא האיבר הגדול ביותר בA (אין איבר בA שגדול יותר ממנו).
+\end{definition}
+
+\begin{definition}
+נאמר שקבוצה A חסומה מלעיל אם קיים 
+$b\in\mathbb{R}$
+כך ש 
+$A\leq b$
+.
+האיבר b נקרא חסם מלעיל של A
+.
+\end{definition}
+
+\begin{definition}
+נאמר שA חסומה מלרע עם חסם מלרע b עם היחס סדר למעלה הפוך.
+\end{definition}
+
+\begin{definition}
+חסם עליון (תחתון) הוא המינימלי (מקסימלי) מבין כל החסמי מלעיל (מלרע) של A
+. 
+\\ \\
+נסמן ב 
+$\inf(A)$
+את החסם התחתון וב
+$\sup(A)$
+את החסם העליון.
+\end{definition}
+
+\begin{exercise}
+תהי 
+$A\subset \mathbb{R}$
+ונניח שקיים a איבר מינימלי לA. הוכיחו שa הוא גם חסם תחתון של A
+.
+\end{exercise}
+\begin{proof}
+כלומר אנחנו רוצים להראות שאם 
+$a = \min\{A\}$
+אזי גם 
+$a = \inf(A)$
+. \\\\
+נניח בשלילה שזה לא נכון. זה אומר שיש b חסם מלרע של A שגדול יותר מa
+.
+מצד שני לפי הגדרת חסם תחתון ובגלל ש
+$a \in A$
+נקבל כי 
+$b\leq a$
+וזה כמובן סתירה.
+\end{proof}
+\begin{theorem}[אקסיומת השלמות]
+לכל קבוצה לא ריקה וחסומה מלעיל יש חסם עליון.
+\end{theorem}
+
+\begin{homeexercise}
+הראו כי זה מוכיח שלכל קבוצה לא ריקה וחסומה מלרע יש חסם תחתון.
+\end{homeexercise}
+
+ניתן ליצור קריטריון מאוד שימושי לבדיקת חסם עליון/תחתון - 
+
+\begin{theorem}
+
+
+\begin{enumerate}
+\item
+איבר M הוא חסם עליון של קבוצה A אם ורק אם M הוא חסם מלעיל של A וגם
+\[\forall\epsilon>0,\exists a\in A: M-\epsilon<a\]
+
+\item 
+איבר M הוא חסם תחתון של קבוצה A אם ורק אם M הוא חסם מלרע של A וגם
+\[\forall\epsilon>0,\exists a\in A: M+\epsilon>a\]
+
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+ניקח 
+\[A:=\left\{5+\frac{2}{3n}\Big| n\in\mathbb{N}\right\}\]
+מצאו חסם עליון/תחתון/מינימום/מקסימום
+
+\end{exercise}
+\begin{proof}
+קודם נכתוב כמה איברים ראשונים - 
+\[A:=\left\{5\frac{2}{3}, 5\frac{1}{3}, 5\frac{2}{9}, 5\frac{1}{6}, \dots\right\}\]
+מהסתכלות ראשונית מאוד ברור שזה סדרה יורדת. מי שרוצה יכל להוכיח את זה, זה תרגיל אלגברי מאוד קל שצריך לדעת איך לעשות. לכן האיבר הכי גדול בסדרה יהיה האיבר הראשון - כלומר 
+$5\frac{2}{3}$
+.
+בפרט כמו שראינו זה אומר שזה גם חסם עליון. נותר למצוא חסם תחתון. הניחוש הראשוני לדבר כזה הוא 5. נראה באמת שזה חסם תחתון. קודם כל ברור שזה חסם מלרע. עכשיו נשתמש בקריטריון שלנו עבור חסם תחתון. כלומר ניקח קודם כל 
+$\epsilon>0$
+ונרצה להראות כי קיים איבר בסדרה 
+$a_n$
+כך ש
+\begin{align*}
+5+\epsilon &> a_n \\
+5+\epsilon &> 5+\frac{2}{3n} \\
+\epsilon &> \frac{2}{3n} \\
+n &> \frac{2}{3\epsilon}
+\end{align*}
+זה כמובן עובד עבור 
+$\left\lceil \frac{2}{3\epsilon}\right\rceil$
+ובזה הוכחנו ש5 הוא חסם תחתון, ברור כי הוא לא נמצא בקבוצה ולכן הוא לא מינימום
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{exercise}
+ניקח 
+\[A:=\left\{\frac{1}{n^2} + 2\cdot(-1)^n\Big| n\in\mathbb{N}\right\}\]
+מצאו חסם עליון/תחתון/מינימום/מקסימום
+
+\end{exercise}
+\begin{proof}
+בדוגמאות כאלה שווה לדגום כמה מספרים מהקבוצה. לכן ניקח כמה איברים ראשונים של הקבוצה - 
+\[A:= \left\{-1, 2\frac{1}{4}, -1\frac{8}{9}, 2\frac{1}{16}, \dots\right\}\]
+ניתן לפרק את הקבוצה הזאת לאינדקסים זוגיים ואי-זוגיים. נקבל דבר כזה
+\begin{align*}
+a_{2n} &= \frac{1}{4n^2} + 2 \\
+a_{2n+1}&= \frac{1}{(2n+1)^2} -2
+\end{align*}
+ניתן לראות כאן שהאיברים במקומות הזוגיים הם רק חיוביים ובאי-זוגיים הם רק שליליים. לכן בתהמקדות במקסימום ובחסם עליון אפשר להתמקד אך ורק בזוגיים, ובהתמקדות במינימום ובחסם תחתון אפשר להתמקד אך ורק באי-זוגיים.
+\\\\
+אם מסתכלים על הסדרה של האיברים הזוגיים והאי-זוגיים בנפרד ברור כי הסדרות יורדות - 
+\begin{claim}
+לכל 
+$n\in\mathbb{N}$
+נקבל כי 
+
+\begin{align*}
+a_{2n}&\geq a_{2n+2} \\
+a_{2n+1}&\geq a_{2n+3}
+\end{align*}
+
+\end{claim}
+את זה ניתן להוכיח ביד אלגברית, תנסו את זה למקרה שזה לא ברור לכם. (בתרגילי בית יש להוכיח דברים כאלה.)\\\\
+לכן סך הכל האיבר המקסימלי הוא האיבר הזוגי הראשון - 
+$\frac{9}{4}$
+, בפרט נקבל שזה חסם עליון. עכשיו נראה ש2- הוא חסם תחתון. מכיוון שהסדרה האי-זוגית אף פעם לא תיתן 2- עבור איזשהו 
+$n\in\mathbb{N}$
+נקבל שיש רק חסם תחתון ולא ממש איבר מינימלי. \\\\
+קודם כל ברור למה 2- הוא חסם מלרע. נשתמש בקקריטריון שלנו על מנת לקבוע שזה חסם תחתון. לכן יהי
+$\epsilon>0$
+אנחנו רוצים להראות שקיים n עבורו 
+\[-2+\epsilon>a_{2n+1}\]
+מזה נקבל את האי-שיוויון הבא
+
+\begin{align*}
+\frac{1}{(2n+1)^2} -2 &< \epsilon -2 \\
+\frac{1}{(2n+1)^2} &< \epsilon \\
+(2n+1)^2 &> \frac{1}{\epsilon} \\
+2n+1 &> \sqrt{\frac{1}{\epsilon}} \\
+n &> \frac{\sqrt{\frac{1}{\epsilon}} - 1}{2}
+\end{align*}
+זה כמובן מתקיים עבור
+\[\left\lceil\frac{\sqrt{\frac{1}{\epsilon}} - 1}{2}\right\rceil\]
+סך הכל סיימנו את ההוכחה.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
