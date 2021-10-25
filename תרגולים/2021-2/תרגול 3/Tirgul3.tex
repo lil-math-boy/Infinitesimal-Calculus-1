@@ -1,0 +1,174 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 3 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{example}{דוגמה}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\limtoinfty}{\underset{n\rightarrow\infty}{\lim}}
+
+\begin{exercise}
+יהיו 
+$\alpha,\beta>0$
+ויהיו סדרות כך ש 
+\[\begin{cases} a_1=\alpha,\quad b_1=\beta \\ a_{n+1}=\frac{a_n+b_n}{2} \\ b_{n+1}=\sqrt{a_n b_n} \end{cases}\]
+הוכיחו כי הסדרות הנ"ל מתכנסות.
+\end{exercise}
+\begin{proof}
+נשים לב כי 
+\[a_n-b_n = \frac{a_{n-1}+b_{n-1}}{2} - \sqrt{a_{n-1}b_{n-1}} = \frac{a_{n-1}-2\sqrt{a_{n-1}b_{n-1}}+b_{n-1}}{2}=\frac{\left(\sqrt{a_{n-1}}-\sqrt{b_{n-1}}\right)^2}{2}\geq 0\]
+ולכן עבור 
+$n\geq 2$
+מתקיים 
+$a_n\geq b_n$.
+נוכיח באינדוקציה כי עבור 
+$n\geq 2$
+מתקיים גם כי 
+$a_n$
+מונוטונית יורדת ו
+$b_n$
+מונוטונית עולה. וזאת מכיוון ש -
+\begin{align*}
+	a_{n+1} &= \frac{a_n+b_n}{2}\leq \frac{a_n+a_n}{2} = a_n \\
+	b_{n+1} &= \sqrt{a_n b_n} \geq \sqrt{b_n\cdot b_n} = b_n
+\end{align*}
+ולכן סך הכל לכל 
+$n\geq 2$
+מתקיים כי
+\[b_2\leq b_n\leq a_n\leq a_2\]
+סך הכל 
+\[\{a_n\}_{n=2}^{\infty},\quad \{b_n\}_{n=2}^{\infty}\]
+סדרות חסומות ומונוטוניות נקבל כי הן גם מתכנסות. שתיהן זנב של הסדרות המקוריות שלנו ולכן גם הן מתכנסות.
+\end{proof}
+
+\begin{exercise}
+יהי 
+$0<c<1$
+ונגדיר סדרה - 
+\[\begin{cases}&a_1 = c\\ &a_{n+1}=\frac{1}{2}c+\frac{1}{2}a_n^2\end{cases}\]
+הוכיחו כי הסדרה מתכנסת ומצאו את הגבול.
+\end{exercise}
+\begin{proof}
+נוכיח באינדוקציה כי 
+$a_{n+1}-a_n<0$. \\\\
+\textbf{בסיס:}
+\[a_2-a_1=\frac{c}{2}+\frac{c^2}{2}-c = \frac{c^2-c}{2}<0 \quad(0<c^2<c)\]
+נשים לב גם שכל איבר בסדרה חיובי וזאת מכיוון שבהגדת הסדרה מעורבים רק מספרים חיוביים וסכומים  של מספרים חיוביים. \\\\
+\textbf{צעד:} 
+\[a_{n+1}-a_n = \frac{1}{2} c+\frac{1}{2}a_n^2 - \left(\frac{1}{2}c+\frac{1}{2} a_{n-1}^2\right) = \frac{1}{2}\left(a_n^2-a_{n-1}^2\right)=\frac{(a_n-a_{n-1})(a_n+a_{n-1})}{2}<0\]
+\end{proof}
+ ולכן הסדרה מונוטונית יורדת. בנוסף הסדרה חסומה בין 0 ו1. ולכן הסדרה מתכנסת. עכשיו נמצא את הגבול. נניח כי הגבול הוא L. נשים לב כי מתקיים ש 
+\[\underset{n\rightarrow\infty}{\lim} a_{n+1} = \underset{n\rightarrow\infty}{\lim}a_n(=L)\]
+ולכן 
+\[L=\underset{n\rightarrow\infty}{\lim} a_{n+1} = \underset{n\rightarrow\infty}{\lim}\left(\frac{1}{2}c+\frac{1}{2}a_n^2\right) = \frac{1}{2}\left(c+L^2\right) \]
+ולכן 
+\[L^2-2L+c=0\]
+כלומר 
+\[L_{1,2}=\frac{2\pm \sqrt{4-4c}}{2} = 1\pm \sqrt{1-c}\]
+נשים לב כי L לא יכולה להיות גדולה מ1 ולכן 
+\[L=1-\sqrt{1-c}\]
+\begin{exercise}
+הוכיחו כי הסדרה הבאה מתכנסת ומצאות את גבולה - 
+\[\begin{cases}&a_1= \sqrt{2} \\ &a_{n+1}= \sqrt{2+a_n}\end{cases}\]
+\end{exercise}
+\begin{proof}
+קודם כל נוכיח כי 
+\[\forall n\in\mathbb{N}: 0\leq a_n\leq 2\]
+את זה אפשר לעשות באינדוקציה - \\\\
+\textbf{בסיס:}
+\[0\leq\sqrt{2}(=a_1)\leq 2\]
+\textbf{צעד:}
+\[0\leq a_{n+1}=\sqrt{a_n+2}\leq \sqrt{2+2} =2\]
+בנוסף נשים לב כי
+\[a_{n+1}-a_n = \sqrt{2+\sqrt{a_n}}-a_n = \frac{2+a_n-a_n^2}{\sqrt{2+\sqrt{a_n}} +a_n}\]
+לכן 
+$a_{n+1}\geq a_n$
+אם ורק אם 
+\begin{align*}
+2+a_n-a_n^2&\geq 0 \Longleftrightarrow\\
+a_n^2-a_n-2&\leq 0 \Longleftrightarrow \\
+-1\leq a_n\leq 2
+\end{align*}
+ולכן לכל 
+$n\in\mathbb{N}$ 
+מתקיים 
+$a_{n+1}\geq a_n$
+כלומר הסדרה מונוטונית. הוכחנו כאמור שהיא גם חסומה ולכן היא מתכנסת. בדומה לתרגיל שעבר נחשב את הגבול. נניח כי הגבול הוא L - 
+\[L = \limtoinfty a_{n+1} = \limtoinfty \sqrt{2+a_n} = \sqrt{2+L}\]
+ולכן מתקיים כי 
+\begin{align*}
+L^2&=2+L \\
+L^2&-L-2=0 \\
+(L-&2)(L+1) = 0
+\end{align*}
+כמובן 
+$L\neq -1$
+ולכן 
+$L=2$.
+\end{proof}
+\begin{exercise}
+תהי הסדרה הבאה - 
+\[a_n:=\frac{\sum_{i=1}^k \alpha_in^i}{\sum_{i=1}^k \beta_in^i}\]
+כאשר מניחים שהיא מוגדרת תמיד ומתקיים 
+$\alpha_n,\beta_n\neq 0$
+מצאו את גבול הסדרה.
+\end{exercise}
+\begin{proof}
+זה יהיה תוצאה של אריתמטיקה של גבולו, נשים לי כי ניתן לכתוב את הסדרה גם באופן הבא - 
+\[a_n = \frac{\sum_{i=1}^k \alpha_in^{i-k}}{\sum_{i=1}^k \beta_in^{i-k}}\]
+נשים לב שהסדרות במונה ובמכנה מתכנסות וזאת מכיוון שלכל 
+$i<k$
+מתקיים כי 
+\[\alpha_i n^{i-k}\underset{n\rightarrow{\infty}}{\longrightarrow} 0 \quad \beta_i n^{i-k}\underset{n\rightarrow{\infty}}{\longrightarrow} 0\]
+ועבור 
+$i=k$
+מתקיים 
+\[\alpha_i n^{i-k} = \alpha_i\cdot 1\underset{n\rightarrow{\infty}}{\longrightarrow} \alpha_k \quad \beta_i n^{i-k} = \beta_i \cdot 1\underset{n\rightarrow{\infty}}{\longrightarrow} \beta_k\]
+ולכן 2 הסדרות מתכנסות והמכנה לא שואף לאפס ומאריתמתיקת גבולות נקבל - 
+\[\limtoinfty a_n = \frac{\alpha_k}{\beta_k}\]
+\end{proof}
+\begin{example}
+למשל עבור - 
+\[a_n = \frac{3n^7+5n^2+1}{6n^7+n^4}\]
+נקבל כי 
+\[\limtoinfty a_n = \limtoinfty \frac{3+\frac{5}{n^5} + \frac{1}{n^7}}{6+\frac{1}{n^3} = \frac{3}{6}} = \frac{3}{6}=\frac{1}{2}\]
+\end{example}
+\begin{exercise}
+הוכח כי הסדרה הבאה מתכנסת ומצא את גבולה 
+\[\begin{cases}&a_1=\frac{3}{4} \\ &a_{n+1} = \frac{a_n+2}{a_n+3}\end{cases}\]
+\end{exercise}
+\begin{proof}
+באינדוקציה ניתן להוכיח כי 
+\[\forall n\in\mathbb{N}:\quad 0<a_n<1\]
+בנוסף לכך ניתן להוכיח באינדוקציה כי הסדרה מונוטונית יורדת - \\\\
+\textbf{בסיס:}
+\[a_2 = \frac{11}{15}<\frac{44}{60}<\frac{45}{60} = \frac{3}{4}=a_1\]
+\textbf{צעד:}
+\[a_{n+2} = \frac{a_{n+1}+2}{a_{n+1}+3} = 1-\frac{1}{a_{n+1}+3}<1-\frac{1}{a_n+3}=a_{n+1}\]
+סך הכל הסדרה מונוטונית יורדת וחסומה. לכן הסדרה גם מתכנסת. עכשיו נמצא את הגבול. 
+\[L=\limtoinfty a_{n+1} = \limtoinfty \frac{a_n+2}{a_n+3} = \frac{L+2}{L+3}\]
+ולכן נקבל - 
+\begin{align*}
+	L&=\frac{L+2}{L+3} \\
+	L^2+3L &= L+2 \\
+	L^2 + 2L - 2 &= 0 \\
+	L_{1,2}&=\frac{-2\pm \sqrt{2^2+2\cdot 4}}{2} = -1\pm\sqrt{3}
+\end{align*}
+כמובן L אי שלילי ולכן נקבל כי
+\[L=\sqrt{3}-1\approx 0.73205\]
+\end{proof}
+\end{document}
