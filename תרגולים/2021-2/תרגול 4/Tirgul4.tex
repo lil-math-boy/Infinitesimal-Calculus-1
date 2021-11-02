@@ -1,0 +1,256 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 4 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{example}{דוגמה}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\newtheorem{comment}{\emph{הערה}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\limtoinfty}{\underset{n\rightarrow\infty}{\lim}}
+\newcommand{\goesto}{\underset{n\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goesfrom}{\underset{n\rightarrow\infty}{\longleftarrow}}
+
+\begin{exercise}
+הוכיחו כי לכל 
+$a>0$
+מתקיים כי 
+\[\limtoinfty a^{\frac{1}{n}} = 1\]
+\end{exercise}
+\begin{proof}
+נחלק למקרים - 
+\begin{enumerate}
+	\item $\mathbf{0<a<1}$ - \newline \newline
+	נשים לב כי לכל 
+$n\in\mathbb{N}$
+מתקיים 
+$0<a^{\frac{1}{n}}<1$
+ולכן מהגדרת הגבול אנחנו צריכים להראות כי 
+\[\forall\epsilon>0 \quad \exists N\in\mathbb{N}\quad \forall n\geq N: \quad 1 - a^{\frac{1}{n}}<\epsilon \]
+עכשיו נבצע מניפולציות על האי-שיוויון -
+\begin{align*}
+1-a^{\frac{1}{n}}&<\epsilon \\
+1-\epsilon&< a^{\frac{1}{n}} \\
+\log_a(1-\epsilon)&>\frac{1}{n} \\
+n&>\frac{1}{\log_a(1-\epsilon)} \\
+\end{align*}
+ולכן ניקח 
+\[N=\max\left\{\left\lceil\frac{1}{\log_a(1-\epsilon)}\right\rceil, 1\right\} + 1\]
+\item $\mathbf{a>1}$ - \newline \newline
+	נשים לב כי לכל 
+$n\in\mathbb{N}$
+מתקיים 
+$a^{\frac{1}{n}}>1$
+ולכן מהגדרת הגבול אנחנו צריכים להראות כי - 
+\[\forall\epsilon>0 \quad \exists N\in\mathbb{N}\quad \forall n\geq N: \quad a^{\frac{1}{n}}-1<\epsilon \]
+עכשיו נבצע מניפולציות על האי-שיוויון -
+\begin{align*}
+a^{\frac{1}{n}} - 1&<\epsilon \\
+a^{\frac{1}{n}}&< 1+\epsilon \\
+\frac{1}{n}&<\log_a(1+\epsilon) \\
+n&>\frac{1}{\log_a(1+\epsilon)} \\
+\end{align*}
+ולכן ניקח 
+\[N=\max\left\{\left\lceil\frac{1}{\log_a(1+\epsilon)}\right\rceil, 1\right\} + 1\]
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+נניח כי יש סדרות 
+$a_n\goesto 0$
+ו 
+$b_n$
+חסומה אז מתקיים כי 
+$a_n\cdot b_n\goesto 0$
+\end{theorem}
+\begin{example}
+ניקח 
+\[a_n := \frac{1}{\ln (n+1)}, \quad b_n:=\sin(n) \]
+מתקיימים בדיוק כל התנאים.
+\end{example}
+\begin{exercise}
+הוכיחו כי אם 
+$a_n$
+סדרה מתכנסת והגבול הבא קיים 
+\[\limtoinfty \frac{a_{n+1}}{a_n} = L\]
+אזי מתקיים כי 
+$|L|\leq 1$
+\end{exercise}
+\begin{proof}
+נחלק שוב למקרים 
+\begin{enumerate}
+\item $\mathbf{a\neq 0}$
+מתקיים כי 
+\[|L| = \left|\limtoinfty \frac{a_{n+1}}{a_n}\right| = \left|\frac{\limtoinfty a_{n+1}}{\limtoinfty a_n}\right| = \left|\frac{a}{a}\right| = 1\leq 1\]
+\item $\mathbf{a=0}$
+מתקיים כי 
+\[\forall\epsilon>0\quad \exists N\in\mathbb{N} \quad \forall n > N: \quad \left|\frac{a_{n+1}}{a_n} - L\right|>\epsilon\]
+נניח בשלילה כי מתקיים 
+$|L|>1$
+מתקיים מאי שיוויון המשולש כי עבור כל אפסילון חיובי לבסוף מתקיים כי 
+\[\left|\left|\frac{a_{n+1}}{a_n}\right|-|L|\right|<\epsilon\]
+בפרט לבסןף מתקיים
+\[\left|\frac{a_{n+1}}{a_n}\right|-|L|>-\epsilon\]
+ולכן
+\[\left|\frac{a_{n+1}}{a_n}\right|>|L|-\epsilon\]
+ואם ניקח בפרט 
+$\epsilon = |L|-1$
+נקבל 
+\[\left|\frac{a_{n+1}}{a_n}\right|>1\]
+ מתקיים לבסוף כלומר סדרת הערכים המוחלטים עולה ממש, ובפרט סדרת הערכים המוחלטים לא מתכנסת ל0 בסתירה. 
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+הוכיחו כי אם התנאים הבאים מתקיימים 
+\[a_n\goesto a\neq0,\quad \frac{b_n}{a_n}\goesto 1\]
+אזי מתקיים כי 
+$b_n\goesto a$
+\end{exercise}
+\begin{proof}
+\[\limtoinfty b_n = \limtoinfty a_n\cdot \frac{b_n}{a_n} = \limtoinfty a_n \cdot \limtoinfty \frac{b_n}{a_n} = 1\cdot a =a\]
+\end{proof}
+
+\begin{theorem}[משפט הסנדוויץ']
+אם מתקיים כי 
+\[a_n\goesto L,\quad b_n\goesto L\]
+ולבסוף מתקיים 
+\[a_n\leq c_n\leq b_n\]
+אזי 
+$c_n\goesto L$
+\end{theorem}
+
+\begin{example}
+מצאו את הגבול הבא 
+\[\sqrt[n]{2^n+3^n}\]
+\end{example}
+\begin{proof}
+\[3\goesfrom 3 = \sqrt[n]{3^n}\leq \sqrt[n]{2^n+3^n}\leq \sqrt[n]{3^n+3^n} = \sqrt[n]{2\cdot 3^n} = \sqrt[n]{2}\cdot 3\goesto 3\]
+ולכן ממשפט הסנדוויץ' הגבול הוא 3.
+\end{proof}
+\subsection*{התכנסות במובן הרחב}
+\begin{definition}
+נאמר כי סדרה מתכנסת במובן הרחב אם ורק אם מתקיים 
+\[\forall M>0 \quad \exists N\in\mathbb{N}\quad \forall n>N: a_n>M\]
+עם אותם סימונים של גבולות. ניתן גם לעשות את אותו דבר עם מינוס אינסוף.
+\end{definition}
+\begin{example}
+הוכיחו לפי ההגדרה כי 
+$2n^2\goesto \infty$
+\end{example}
+
+\begin{proof}
+יהי 
+$M>0$
+לפי ההגדרה צריך להוכיח כי יש 
+$N\in\mathbb{N}$
+כך שלכל 
+$n>N$
+מתקיים 
+$a_n>m$.
+כלומר 
+\begin{align*}
+2n^2&>M  \left(\Longleftrightarrow\right)\\
+n^2&>\frac{M}{2}  \left(\Longleftrightarrow\right)\\
+n&> \sqrt{\frac{M}{2}} 
+\end{align*}
+ולכן ניקח 
+\[N:=\left\lceil\sqrt{\frac{M}{2}} \right\rceil +1\]
+\end{proof}
+
+\begin{comment}
+שימו לב כי אם 
+$a_n$ 
+סדרה מתכנסת לאינסוף ומתקיים כי 
+$a_n\leq b_n$
+אז גם 
+$b_n$
+מתכנסת לאינסוף.
+\end{comment}
+\begin{example}
+מצאו 
+\[\limtoinfty \sqrt[n]{n!}\]
+\end{example}
+\begin{proof}
+נשים לב כי 
+\[\left(\frac{n}{2}\right)^{n/2}\ \leq 1\cdot 2\cdot \dots\cdot \frac{n}{2}\cdot \dots\cdot n= n!\]
+ולכן מתקיים
+\[\infty\goesfrom \sqrt{\frac{n}{2}}= \sqrt[n/2]{\left(\frac{n}{2}\right)^{n/2}}\leq \sqrt[n]{n!}\]
+ובפרט הסדרה מתכנסת לאינסוף.
+\end{proof}
+\begin{example}
+מצאו את 
+\[\limtoinfty \frac{n^n}{n!}\]
+\end{example}
+\begin{proof}
+נשים לב כי
+\[n!\leq \left(\frac{n}{2}\right)^{n/2}\cdot n ^{n/2}\]
+ולכן 
+\[\infty\goesfrom 2^{n/2} = \frac{n^n}{\frac{n^n}{2^{n/2}}} = \frac{n^n}{\left(\frac{n}{2}\right)^{n/2}\cdot n^{n/2}} \leq \frac{n^n}{n!} \]
+ולכן הסדרה מתכנסת לאינסוף. 
+\end{proof}
+
+\begin{claim}
+אם 
+$a_n\goesto \infty$
+ו 
+$b_n$
+חסומה מלרע אזי מתקיים 
+\[a_n+b_n\goesto\infty\]
+\end{claim}
+\begin{proof}
+ניקח את החסם מלרע 
+$k\in\mathbb{R}$.
+יהי 
+$M>0$
+עבור 
+$M-k$
+מתקיים כי יש 
+$N\in\mathbb{N}$
+ עבורו לכל
+$n\geq N$
+ מתקיים כי
+$a_n\geq M-k$. ולכן יתקיים 
+$a_n+b_n\geq M-k +b_n\geq M$
+ולכן לפי הגדרת הגבול הסדרה מתכנסת לאינסוף.
+\end{proof}
+
+\begin{exercise}
+הוכיחו כי
+\[\frac{n^2}{n+1}\goesto \infty\]
+נשים לב כי
+\[\frac{n^2}{n+1}\geq \frac{n^2}{2n}\frac{n}{2}\goesto\infty\]
+ולכן מסנדוויץ' הרחב נקבל כי הסדרה תתכנס לאינסוף.
+\end{exercise}
+
+נניח 
+\[a_n,b_n\goesto \infty\]
+מה הן האפשרויות עבור 
+\[\limtoinfty \frac{a_n}{b_n}\]
+
+\begin{enumerate}
+\item $\mathbf{0}$ - $\frac{n}{n^2}$
+\item $\mathbf{c}$
+עבור 
+$c>0$
+למשל 
+\[\frac{n}{2n} \goesto\frac{1}{2}\]
+\item $\mathbf{\infty}$ - $\frac{n^2}{n}$
+\item $\emptyset$ - 
+למשל ניקח 
+\[a_n:=\begin{cases}n, &\text{אי זוגי} \\ n^2, & \text{זוגי} \end{cases}, \quad b_n:=n^2\]
+\end{enumerate}
+\end{document}
