@@ -1,0 +1,264 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 5 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{example}{דוגמה}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\newtheorem{comment}{\emph{הערה}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\limtoinfty}{\underset{n\rightarrow\infty}{\lim}}
+\newcommand{\limsuptoinfty}{\underset{n\rightarrow\infty}{\limsup}}
+\newcommand{\liminftoinfty}{\underset{n\rightarrow\infty}{\liminf}}
+\newcommand{\limtop}{\underset{-}{\lim}}
+\newcommand{\limbottom}{\overset{-}{\lim}}
+\newcommand{\goesto}{\underset{n\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goesfrom}{\underset{n\rightarrow\infty}{\longleftarrow}}
+% \newcommand{\series}{_{n\in\mathbb{N}}}
+\newcommand{\series}[2]{\{#1\}_{#2\in\mathbb{N}}}
+
+\begin{definition}	
+בהינתן סדרה 
+$\series{a_n}{n}$ 
+תת סדרה שלה היא סדרה מהצורה 
+$a_{n_k}$ 
+כאשר 
+$n_1<n_2<n_3<\dots$.
+\[\series{a_{n_k}}{k}\]
+\end{definition}
+
+\begin{definition}
+גבול חלקי של סדרה הוא גבול של תת סדרה שלה.
+\end{definition}
+
+\begin{comment}
+אם סדרה מתכנסת אז הגבול החלקי היחיד שלה הוא הגבול עצמו.
+\end{comment}
+
+\begin{theorem}
+L הוא גבול חלקי של סדרה אם ורק אם 
+יש אינסוף איברים של הסדרה בכל סביבה של הגבול החלקי.
+\end{theorem}
+
+\begin{exercise}
+הראו כי לא מספיק להניח שיש איבר של הסדרה בכל סביבה. וזאת מכיוון שצריך להיות אינסוף שונים כאלה - למשל 1, 0, 0, 0,...
+\end{exercise}
+
+\begin{exercise}
+האם הכרחי להניח שיש איבר של הסדרה ששונה מהגבול החלקי בכל סביבה? לא מכיוון שזה לא מתקיים עבור הסדרה קבועה. 
+\end{exercise}
+
+\begin{exercise}
+האם קיימת סדרה בת מניה עם יותר מא0 גבולות חלקיים?
+\end{exercise}
+
+\begin{proof}
+כן. ניקח את הרציונליים - 
+$\mathbb{Q}$
+. מה קבוצת הגבולות החלקיים של הקבוצה?
+\[\mathbb{R}\cup\{-\infty,\infty\}\]
+קודם כל ברור כי האינסופיים הם גבולות חלקיים כי הסדרה אינה חסומה. עכשיו יהי 
+$r\in\mathbb{R}$
+צריך להוכיח שיש אינסוף מספרים רציונליים בכל סביבה 
+$(r-\epsilon, r+\epsilon)$.
+אך זה נכון מכיוון שהרציונליים צפופים בממשיים. (אפשר לקחת ידנית את הרציונליים בקטע) ולכן כל הממשיים הם קבוצת כל הגבולות החלקיים. 
+\end{proof}
+
+\begin{exercise}
+הוכיחו שהסדרה הבאה לא מתכנסת 
+\[a_n:=\sin\left(\frac{\pi n}{2}\right)\]
+\end{exercise}
+
+\begin{proof}
+נתבונן בתת סדרה עם האינדקסים הזוגיים. כל האיברים בתת סדרה הזאת מתאפסים ולכן 0 הוא גבול חלקי. ניקח את האינדקסים ששקולים ל1 מודולו 4. כל האיברים בסדרה הם 1 ולכן 1 הוא גם גבול חלקי. סדרה עם 2 גבולות חלקיים לא מתכנסת. 
+\end{proof}
+
+\begin{exercise}[תרגיל מהשיעורי בית]
+תהי 
+$\series{a_n}{n}$
+סדרה כך שקיים לה אוסף סופי של תת סדרות המכסות את הסדרה ומתכנסות לאותו הגבול. הראו כי הסדרה מתכנסת לאותו גבול. באיזה חלק היינו צריכים את הסופיות? הביאו דוגמה נגדית שבה קיימים אוסף אינסופי של תת-סדרות המכסות את הסדרה ומתכנסות לאותו גבול אבל הסדרה לא מתכנסת
+\end{exercise}
+
+\begin{proof}
+נזכור את ההגדרה עבור התכנסות לגבול - 
+\[\forall\epsilon>0\quad \exists N\in\mathbb{N} \quad n> N:\quad |a_n-L|<\epsilon\]
+נניח כי התת סדרות המכסות הן
+\[\{\series{a_n^1}{n}\},\{\series{a_n^2}{n}\},\dots,\{\series{a_n^k}{n}\}\]
+יהי אפסילון חיובי. עבור כל התתי סדרות האלה נוכל לקחת את 
+$N_k$
+המתאימים. ולכן נוכל להגדיר 
+\[N':=\max\{N_1,\dots,N_k\}\]
+ועבור זה מתקיים ההגדרה של ההתכנסות של הסדרה עבור הסדרה המקורית. עכשיו נמצא דוגמה נגדית מתאימה. דוגמה נגדית נחמדה היא 
+\begin{center}
+\begin{tabular}{ c c c c c c}
+ $\frac{1}{1}$ & $\frac{1}{2}$ & $\frac{1}{3}$ & \dots & $\frac{1}{n}$ &\dots \\ 
+ $\frac{1}{1}$ & $\frac{1}{2^2}$ & $\frac{1}{3^2}$ & \dots & $\frac{1}{n^2}$ &\dots \\  
+ $\frac{1}{1}$ & $\frac{1}{2^3}$ & $\frac{1}{3^3}$ & \dots & $\frac{1}{n^3}$ &\dots \\   
+ $\frac{1}{1}$ & $\frac{1}{2^4}$ & $\frac{1}{3^4}$ & \dots & $\frac{1}{n^4}$ &\dots \\  
+ \dots & \dots & \dots & \dots & \dots &\dots \\ 
+ $\frac{1}{1}$ & $\frac{1}{2^k}$ & $\frac{1}{3^k}$ & \dots & $\frac{1}{n^k}$ &\dots \\   
+ \dots & \dots & \dots & \dots & \dots &\dots
+\end{tabular}
+\end{center}
+ניקח סדרה שלוקחת את האלכסונים בסדר המתאים ועולה. כלומר - 
+\[1, 1, \frac{1}{2}, 1,\frac{1}{4},\frac{1}{3},1, \frac{1}{8}, \frac{1}{9},\frac{1}{4},\dots\]
+נשים לב כי כל התתי סדרות שהשורות מייצגות מתכנסות ל0 אך יש לסדרה תת סדרה קבועה על 1 ולכן גם 1 גבול חלקי ולכן גם הסדרה לא מתכנסת. סך הכל הסדרה לא מתכנסת לגבול של אינסוף הסדרות המכסות. בגלל זה צריך את הסופי כי למרות שכל התתי סדרות גם מתכנסות בעצמן בצורה יפה ל0 זה עדיין לא מספיק.
+\end{proof}
+
+\begin{definition}
+הגבול העליון של הסדרה, מסומן ב 
+$\limsup$ 
+או 
+$\limtop$
+, הוא הגבול החלקי הגדול ביותר של הסדרה. בדומה ניתן להגדיר את הגבול התחתון. 
+\end{definition}
+
+\begin{exercise}
+מצאו את הגבול העליון והתחתון של הסדרות הבאות - 
+\begin{enumerate}
+\item $a_n:=2^n$
+\item $a_n:=-5n$
+\item $a_n=(-1)^n$
+\end{enumerate}
+\end{exercise}
+
+\begin{proof}
+נחלק לסעיפים
+\newline
+\begin{enumerate}
+\item נשים לב כי הסדרה מתכנסת במובן הרחב לאינסוף ולכן זה הגבול היחיד שלה ובפרט גם הגבול העליון והתחתון שלה
+\item בדיוק אותו דבר כמו מקודם רק עם מינוס אינסוף.
+\item נשים לב כי אינסוף ומינוס אינסוף הן גבולות חלקיים (נחלק לאינדקסים זוגיים ואי-זוגיים) ולכן אלה גם צריכים להיות הגבול העליון והתחתון. 
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}
+מצאו והוכיחו את הגבול העליון והתחתון של 
+\[a_n:=\sin\left(\frac{\pi n}{2}\right)\]
+\end{exercise}
+
+\begin{proof}
+מצאנו כבר בעבר תת-סדרה שמתכנסת ל1. נמצא בדומה תת סדרה המתכנסת למינוס 1. בשביל זה ניקח את האינדקסים ששקולים ל3 מודולו 4. כל האיברים הם -1 ולכן זה גם גבול חלקי. בנוסף הסדרה מקיימת
+\[-1\leq a_n\leq 1\]
+ולכן גם כל התתי סדרות מקיימות את זה ובפרט גם כל הגבולות החלקיים L מקיימים 
+\[-1\leq L\leq 1\]
+ובפרט נקבל כי
+\[\limsuptoinfty a_n = 1,\quad \liminftoinfty a_n = -1\]
+\end{proof}
+
+\begin{exercise}
+מצאו את האינפימום, סופרימום, גבול עליון ותחתון של הסדרה הבאה -
+\[a_n:=(-1)^n \left(5+\frac{1}{n}\right)\]
+\end{exercise}
+
+\begin{proof}
+נחלק לאינדקסים דוגיים ואי זוגיים - 
+\[a_{2k} = 5+\frac{1}{2k}\goesto 5, \quad a_{2k+1}=-5-\frac{1}{2k-1}\goesto-5\]
+נניח בשלילה קיים גבול יחיד נוסף. כמובן שהגבול לא יכל להיות 0 כי אין איבר מהסדרה בין מינוס אחד לאחד. אחרת הגבול הוא או שלילי או חיובי. בלי הגבלת הכלליות הוא חיובי. קיימת תת סדרה שמתכנסת לגבול הנ"ל ולכן לבסוף התת סדרה היא רק מתוך האינדקסים הזוגיים. נניח בלי הגבלת הכלליות כי אין איברים בתת סדרה מאינדקסים אי זוגיים. בפרט הגבול הוא גבול חלקי של הסדרה עם האינדקסים הזוגיים והסדרה של האינדקסים הזוגים מתכנסת ל5 ולכן הגבול הזה צריך להיות 5 בסתירה. ולכן אין גבול חלקי נוסף. בפרט -
+\[\limsuptoinfty a_n=5,\quad \liminftoinfty a_n = -5\]
+נשאיר כתרגיל לבית את החלק הראשון, זה תרגיל מהסוג שפתרנו ונשים לב כי אם נפתור נקבל - 
+\[\inf a_n = -6,\quad \sup a_n = 5.5\]
+ונשים לב כי כל הערכים למעלה שונים אחד מהשני.
+\end{proof}
+
+\begin{exercise}
+בהינתן 
+$a,b\in\mathbb{R}$
+נגדיר 
+$\mathbb{Q}_{a,b} := \mathbb{Q}\cap [a, b]$.
+ניקח מניה של הקבוצה - 
+$\series{q_n}{n}$
+הוכיחו כי 
+\[\liminftoinfty q_n = \inf q_n, \quad \limsuptoinfty q_n=\sup q_n\]
+\end{exercise}
+
+\begin{proof}
+קודם נשים לב כי האינפימום והסופרימום של הסדרה הוא 
+$a, b$
+(זה אשאיר כתרגיל לבית למי שרוצה, זה בגלל הצפיפות של הרציונליים בממשיים). לכן מה שצריך להראות זה - 
+\[\liminftoinfty q_n=a, \quad \limsuptoinfty q_n = b\]
+אפשר לעשות את זה כמו קודם שעשינו עם הגבולות החלקיים של המניה של הרציונליים כולם. בא להראות שלפעמים הלימסופו והסופרימום הם אותו דבר ובדומה עבור הלימאינף. זה לא תמיד נכון אבל כמו שראינו בתרגיל 8.
+\end{proof}
+
+\begin{definition}
+נאמר כי סדרה 
+$\series{a_n}{n}$
+מקיימת את קריטריון קושי אם:
+\[\forall\epsilon>0\quad\exists N\in\mathbb{N}\quad\forall m,n\geq N: |a_n-a_m|<\epsilon\]
+\end{definition}
+
+\begin{theorem}
+בממשיים סדרה היא מתכנסת אם ורק אם היא קושי.
+\end{theorem}
+
+\begin{theorem}
+כל סדרת קושי חסומה.
+\end{theorem}
+
+\begin{exercise}
+הראו כי הסדרה הבאה מתכנסת 
+\[a_n:=\sum_{i=1}^n i^2\]
+\end{exercise}
+
+\begin{proof}
+נראה כי הסדרה היא סדרת קושי. יהיו אינדקסים
+$m,n$
+ובלי הגבלת הכלליות 
+$n>m$
+נשים לב כי מתקיים - 
+\begin{align*}
+|a_n-a_m| &= a_n-a_m  = \frac{1}{(m+2)^2}+\dots+\frac{1}{n^2} < \\ &< \frac{1}{m(m+1)} + \frac{1}{(m+1)(m+2)} + \dots + \frac{1}{n(n-1)} = \\ &= \left(\frac{1}{m}-\frac{1}{m+1}\right) + \left(\frac{1}{m+1}-\frac{1}{m+2}\right)+\dots + \left(\frac{1}{n-1}-\frac{1}{n}\right)= \frac{1}{m}-\frac{1}{n} < \\ &<\frac{1}{m}
+\end{align*}
+לכן נבחר 
+$N:=\left\lceil \frac{1}{\epsilon}\right\rceil$ 
+ונסיים כדרוש מאיתנו. האם זה עובד גם עבור 
+$\sum_{i=1}^n \frac{1}{i}$
+? (כלומר האם זו סדרת קושי מסיבה דומה)
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
