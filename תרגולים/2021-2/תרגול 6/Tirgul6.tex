@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 6 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{example}{דוגמה}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\newtheorem{comment}{\emph{הערה}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\limtoinfty}{\underset{n\rightarrow\infty}{\lim}}
+\newcommand{\limtur}{\overset{\infty}{\underset{n=1}{\sum}}}
+\newcommand{\limturstart}[1]{\overset{\infty}{\underset{n=#1}{\sum}}}
+\newcommand{\limsuptoinfty}{\underset{n\rightarrow\infty}{\limsup}}
+\newcommand{\liminftoinfty}{\underset{n\rightarrow\infty}{\liminf}}
+\newcommand{\limtoinftym}{\underset{m\rightarrow\infty}{\lim}}
+\newcommand{\limtop}{\underset{-}{\lim}}
+\newcommand{\limbottom}{\overset{-}{\lim}}
+\newcommand{\goesto}{\underset{n\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goestom}{\underset{m\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goesfrom}{\underset{n\rightarrow\infty}{\longleftarrow}}
+% \newcommand{\series}{_{n\in\mathbb{N}}}
+\newcommand{\series}[2]{\{#1\}_{#2\in\mathbb{N}}}
+
+\begin{theorem}
+לכל מספר ממשי 
+$x$
+\[\limtoinfty \left(1+\frac{x}{n}\right)^n =e^x\]
+\end{theorem}
+
+\begin{exercise}
+חשבו את 
+\[\limtoinfty \left(\frac{n+3}{n+7}\right)^n\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי
+\begin{align*}
+\limtoinfty \left(\frac{n+3}{n+7}\right)^n &= \limtoinfty \left(\frac{n+7-4}{n+7}\right)^n = \limtoinfty\left(1-\frac{4}{n+7}\right)^n = \limtoinfty\left(\left(1-\frac{4}{n+7}\right)^{n+7}\right)^{n/(n+7)} = \\ &\underset{(m=n+7)}{=} \limtoinftym\left(\left(1-\frac{4}{m}\right)^{m}\right)^{(m-7)/m}
+\end{align*}
+נשים לב כי אם הבסיס והמעריך מתכנסים למספרים אי שליליים אז הגבול של החזקה מתכנסה לחזקה של הגבולות. (לא אוכיח לכם בתרגול) ולכן אם נמצא את הגבולות הנפרדים נוכל למצוא את הגבול הכולל. ולכן 
+\[\limtoinfty \left(\frac{n+3}{n+7}\right)^n = \left(\limtoinftym\left(1-\frac{4}{m}\right)^{m}\right)^{\limtoinftym (m-7)/m} = \left(e^{-4}\right)^{1} = e^{-4}\]
+\end{proof}
+
+\begin{exercise}
+חשבו את הגבול 
+\[\limtoinfty \left(\frac{n^2-5}{n^2-4}\right)^n\]
+\end{exercise}
+
+\begin{proof}
+\begin{align*}
+\limtoinfty \left(\frac{n^2-5}{n^2-4}\right)^n &= \limtoinfty \left(\frac{n^2-4-1}{n^2-4}\right)^n = \limtoinfty \left(1-\frac{1}{n^2-4}\right)^n = \left(\limtoinfty \left(1-\frac{1}{n^2-4}\right)^{n^2-4}\right)^{n/(n^2-4)}
+\end{align*}
+מאותה סיבה נקבל 
+\[\limtoinfty \left(\frac{n^2-5}{n^2-4}\right)^n  = \left(\limtoinftym \left(1-\frac{1}{m}\right)^{m}\right)^{\limtoinfty n/(n^2-4)} = \left(e^{-1}\right)^0 = 1\]
+\end{proof}
+
+\begin{exercise}
+חשבו את 
+\[\limtoinfty \left(\frac{n+5}{n^2+1}\right)^n\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי השרשרת אי-שיוויונים הבאים מתקיימים - 
+\[0<\left(\frac{n+5}{n^2+1}\right)^n<\left(\frac{n+5}{n^2}\right)^n = \left(\frac{1}{n}+\frac{5}{n^2}\right)^n \leq \left(\frac{6}{n}\right)^n <\left(\frac{6}{7}\right)^n\]
+(כשחלק מהאי-שיוויונות הן של "לבסוף".) נשים לב כי שתי הצדדים הקיצוניים מתכנסים ל0 ולכן ממשפט הסנדוויץ' נקבל גם כי הסדרה שלנו מתכנסת ל0.
+\end{proof}
+
+\section{טורים}
+
+\begin{definition}
+בהינתן סדרה 
+$\series{a_n}{n}$
+הטור של הוא האובייקט 
+$\sum_{n=1}^{\infty} a_n$.
+נאמר כי הטור מתכנס אם ורק אם מתקיים כי הגבול הבא קיים
+\[\limtoinfty \left(\sum_{i=1}^n a_i\right)\]
+ובהינתן שהטור מתכנס הערך שלו יהיה הגבול הנ"ל. הביטויים בתוך הגבול הנ"ל נקראים הסכומים החלקיים של הסדרה.
+\end{definition}
+
+\begin{theorem}
+אם הטור של הסדרה מתכנס נקבל כי הסדרה מתכנסת ל0.
+\end{theorem}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר (לא מתכנס)
+\[\sum_{n=1}^\infty \frac{n+1}{2n}\]
+\end{exercise}
+
+\begin{proof}
+מכיוון שהסדרה של הטור לא מתכנסת ל0 הטור גם לא יתכנס ובפרט יתבדר - 
+\[\limtoinfty \frac{n+1}{2n} = \frac{1}{2}\]
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר (לא מתכנס)
+\[\sum_{n=1}^\infty (-1)^n \left(\frac{n+1}{n}\right)\]
+\end{exercise}
+
+\begin{proof}
+בדומה מתקיים 
+\[\limtoinfty (-1)^n \left(\frac{n+1}{n}\right) = \pm 1\neq 0\]
+כשהגבול למעלה הוא במובן של גבולות חלקיים. ולכן הטור מתבדר.
+\end{proof}
+
+\begin{exercise}
+קבעו אם הטור הבא מתכנס או מתבדר
+\[\limtur \log\left(\frac{n+1}{n}\right)\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי סדרת הגבולות החלקיים הם 
+\[s_m:=\log\left(\frac{2}{1}\right)+\log\left(\frac{3}{2}\right)+\dots+\log\left(\frac{m+1}{m}\right)\]
+ולכן מחוקי לוגים יתקיים 
+\[s_m = (\log 2-\log 1) + (\log 3-\log 2) + (\log 4-\log 3) + \dots +(\log(m+1) - \log m) = \log(m+1)-\log(1) = \log(m+1)\]
+ולכן סדרת הגבולות החלקיים מקיימת
+\[\limtoinftym s_m = \limtoinftym \left(\log (m+1)\right) = \infty\]
+ולכן סדרת הגבולות החלקיים לא מתכנסת ובפרט הטור לא מתכנס.
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר 
+\[\limtur \frac{1}{\sqrt{n}}\]
+\end{exercise}
+
+\begin{proof}
+נתבונן בסדרת הגבולות החלקיים - 
+\[S_m:= \frac{1}{\sqrt{1}}+\frac{1}{\sqrt{2}} + \dots + \frac{1}{\sqrt{m}} > \frac{1}{\sqrt{m}}+\frac{1}{\sqrt{m}}+\dots +\frac{1}{\sqrt{m}} = \sqrt{m}\goesto \infty\]
+ובפרט יתקיים כי סדרת הגבולות החלקיים לא מתכנסת כלומר הטור מתבדר.
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר ואם כן מצאו את סכומו
+\[\limtur \frac{1}{(n+2)(n+4)}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי מתקיים 
+\[a_n = \frac{1}{2}\left(\frac{1}{n+2}-\frac{1}{n+4}\right)\]
+ולכן יתקיים עבור סדרת הגבולות החלקיים 
+\begin{align*}
+S_m&:=\frac{1}{2}\left(\left(\frac{1}{3}-\frac{1}{5}\right)+\left(\frac{1}{4}-\frac{1}{6}\right) + \left(\frac{1}{5}-\frac{1}{7}\right) + \left(\frac{1}{6}-\frac{1}{8}\right) + \dots + \left(\frac{1}{n+2}-\frac{1}{n+4}\right)\right)= \\ &= \frac{1}{2}\left(\frac{1}{3}+\frac{1}{4} - \frac{1}{n+4}-\frac{1}{n+3}\right)\goestom \frac{1}{2}\left(\frac{7}{12} - 0\right) = \frac{7}{24}
+\end{align*}
+ולכן הטור מתכנס וערכו שווה ל 
+$\frac{7}{24}$
+\end{proof}
+
+\begin{exercise}
+הוכיחו כי הטור הבא מתכנס ומצאו את סכומו
+\[\limtur \frac{\sqrt{n+1}-\sqrt{n}}{\sqrt{n^2+n}}\]
+\end{exercise}
+
+\begin{proof}
+שימו לב כי
+\[a_n:=\frac{\sqrt{n+1}}{\sqrt{n}\cdot\sqrt{n+1}} - \frac{\sqrt{n}}{\sqrt{n}\cdot\sqrt{n+1}} = \frac{1}{\sqrt{n}}-\frac{1}{\sqrt{n+1}}\]
+ולכן סדרת גבולות החלקיים מקיימת
+\[S_m:= \frac{1}{\sqrt{1}} - \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{2}} - \frac{1}{\sqrt{3}} + \frac{1}{\sqrt{3}} - \frac{1}{\sqrt{4}}+ \dots + \frac{1}{\sqrt{m}} - \frac{1}{\sqrt{m+1}} = 1-\frac{1}{\sqrt{m+1}}\goestom 1\]
+ולכן הטוק מתכנס וערכו הוא 1.
+\end{proof}
+
+\begin{theorem}
+הטור ההנדסי 
+\[\limtur q^n\]
+מתכנס עבור 
+$|q|< 1$
+ןמתבדר עבור 
+$|q|\geq 1$
+וכשהוא מתכנס סכומו הוא 
+\[\frac{1}{1-q}\]
+\end{theorem}
+
+\begin{exercise}
+הוכיחו כי הטור הבא מתכנס ומצאו את סכומו 
+\[\limtur \frac{10}{3^{n-1}}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי סדרת הסכומים החלקיים מקיימת
+\[S_m:= 10\cdot \sum_{i=0}^{m-1} \left(\frac{1}{3}\right)^n\]
+ומהמשפט נקבל שהסכום מתכנס ל 
+$\frac{3}{2}=1.5$
+ולכן מאריתמטיקת גבולות על הסכומים החלקיים נקבל כי הם מתכנסים ל15. וזה בדיוק אומר שהטור מתכנס וערכו 15.
+\end{proof}
+
+\begin{exercise}
+הוכיחו כי הטור הבא מתכנס ומצאו את סכומו - 
+\[\limtur \frac{2^n+3^n}{6^n}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי - 
+\[\limtur \frac{2^n}{6^n} + \frac{3^n}{6^n} = \limtur \left(\frac{1}{3}\right)^n + \left(\frac{1}{2}\right)^n = \left(\frac{1}{1-\frac{1}{3}} - 1 \right) + \left(\frac{1}{1-\frac{1}{2}} - 1 \right) = 0.5+1 = 1.5\]
+כאשר הפירוק לטורים נכון מכיוון שהטורים בנפרד מתכנסים. כלומר סך הכל הטור המקורי מתכנס לערך 1.5.
+\end{proof}
+
+\begin{exercise}
+מצאו את סכום הטור הבא
+\[\limtur\frac{2^n + n^2 +n}{2^{n+1}n(n+1)}\]
+\end{exercise}
+
+\begin{proof}
+נפרק את הטור וזה יהיה מותר כשנוכיח ששתי התת טורים האלה יתכנסו
+\[\limtur\frac{2^n + n(n+1)}{2^{n+1}n(n+1)} = \limtur\frac{1}{2^{n+1}} + \limtur\frac{1}{2n(n+1)}\]
+הטור הראשון מתכנס לחצי. לכן נמצא את הגבול של הטור השני. נעשה את זה בצורה דומה לאיך שעשינו לפני. נשים לב כי 
+\begin{align*}
+\sum_{i=1}^n \frac{1}{2n(n+1)} &=\frac{1}{2}\left(\sum_{i=1}^n \frac{1}{n(n+1)}\right) =  \frac{1}{2}\left(\sum_{i=1}^n \frac{1}{n} - \frac{1}{n+1}\right) = \\ &=  \frac{1}{2}\left(\left(\frac{1}{2}-\frac{1}{3}\right) + \left(\frac{1}{3}-\frac{1}{4}\right) +\left(\frac{1}{4}-\frac{1}{5}\right) + \dots + \left(\frac{1}{n}-\frac{1}{n+1}\right)\right) = \frac{1}{2}\left(1 + \frac{1}{n}\right) \goesto\frac{1}{2}
+\end{align*}
+ולכן הטור המקורי מתכנס ל1.
+\end{proof}
+
+\begin{exercise}
+הוכיחו כי הטור הבא מתכנס ומצאו את סכומו 
+\[\limturstart{2} \frac{\log \left(\left(1+\frac{1}{n}\right)^n\cdot(1+n)\right)}{\log n^n\cdot \log\left(n+1\right)^{n+1}}\]
+\end{exercise}
+
+\begin{proof}
+נפתח את הטור כדי שנוכל להמשיך בתרגיל 
+\begin{align*}
+\frac{\log \left(\left(1+\frac{1}{n}\right)^n\cdot(1+n)\right)}{\log n^n\cdot \log\left(n+1\right)^{n+1}} &= \frac{n\log\left(1+\frac{1}{n}\right)+\log(n+1)}{n\log n\cdot (n+1)\log\left(n+1\right)} = \frac{n\log\left(1+n\right) -n\log n+\log(n+1)}{n\log n\cdot (n+1)\log\left(n+1\right)} = \\ &= \frac{-n\log n+(n+1)\log(n+1)}{n\log n\cdot (n+1)\log\left(n+1\right)} = \frac{1}{n\log n} - \frac{1}{(n+1)\log (n+1)}
+\end{align*}
+נפתח סכום חלקי סופי - 
+\begin{align*}
+S_m:&=\left(\frac{1}{2\log 2} - \frac{1}{3\log 3}\right) + \left(\frac{1}{3\log 3} - \frac{1}{4\log 4}\right) + \dots + \left(\frac{1}{n\log n} - \frac{1}{(n+1)\log (n+1)}\right) =\\ &=\frac{1}{2\log 2} - \frac{1}{(n+1)\log (n+1)} \goesto \frac{1}{2\log 2}
+\end{align*}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
