@@ -1,0 +1,315 @@
+\documentclass{article}
+\usepackage{fontspec, fullpage}
+\usepackage{polyglossia}
+\usepackage{amsmath, amssymb, bbm, amsthm}
+\setmainlanguage{hebrew}
+\setmainfont{Times New Roman}
+% \newfontfamily{\hebrewfont}{New Peninim MT}
+\begin{document}
+\title{תרגול 7 חשבון אינפיניטסימלי 1 שנת 2021/2}
+\author{ישראל הבר}
+\maketitle
+
+\newtheorem{theorem}{משפט}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{homeexercise}{תרגיל לבית}
+\newtheorem{example}{דוגמה}
+\theoremstyle{definition}
+\newtheorem{definition}{הגדרה}
+\newtheorem{notation}{סימון}
+\newtheorem{claim}{טענה}
+\newtheorem{comment}{\emph{הערה}}
+\renewcommand\qedsymbol{$\blacksquare$}
+\newcommand{\limtoinfty}{\underset{n\rightarrow\infty}{\lim}}
+\newcommand{\limtur}{\overset{\infty}{\underset{n=1}{\sum}}}
+\newcommand{\limturstart}[1]{\overset{\infty}{\underset{n=#1}{\sum}}}
+\newcommand{\limsuptoinfty}{\underset{n\rightarrow\infty}{\limsup}}
+\newcommand{\liminftoinfty}{\underset{n\rightarrow\infty}{\liminf}}
+\newcommand{\limtoinftym}{\underset{m\rightarrow\infty}{\lim}}
+\newcommand{\limtop}{\underset{-}{\lim}}
+\newcommand{\limbottom}{\overset{-}{\lim}}
+\newcommand{\goesto}{\underset{n\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goestom}{\underset{m\rightarrow\infty}{\longrightarrow}}
+\newcommand{\goesfrom}{\underset{n\rightarrow\infty}{\longleftarrow}}
+% \newcommand{\series}{_{n\in\mathbb{N}}}
+\newcommand{\series}[2]{\{#1\}_{#2\in\mathbb{N}}}
+
+\section*{מבחני השוואה}
+\begin{theorem}[מבחן ההשוואה הראשון]
+עבור 2 טורים עם סדרות חיוביות כך שלבסוף 
+$a_n\leq b_n$
+מתקיים:
+\begin{enumerate}
+\item אם 
+$\limtur a_n$
+מתכנס אז גם 
+$\limtur b_n$
+מתכנס.
+\item אם 
+$\limtur b_n$
+מתבדר אזי גם 
+$\limtur a_n$
+מתבדר.
+\end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+האם הטור הבא מתכנס או מתבדר?
+\[\limtur \frac{\sin\left(\frac{\pi}{n^2}\right)}{n^2}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי החל מ
+$n=2$
+מתקיים כי 
+\[\sin\left(\frac{\pi}{n^2}\right)\geq 0 \]
+ובנוסף מתקיים כי פונקציית סינוס חסומה על ידי 1. נשים לב כי טור מתכנס אם ורק אם הזנב שלו מתכנס ולכן אם נוכיח שמ2 והלאה מבחן ההשוואה הראשון מתקיים עבור הסדרה שלנו וסדרה נוספת נוכל להשתמש בו. לכן נשווה את הטור עם הטור של 
+$\frac{1}{n^2}$
+ונקבל שמכיוון שהטור הזה מתכנס גם שלנו יתכנס.
+\end{proof}
+
+\begin{exercise}
+האם הטור הבא מתכנס או מתבדר
+ \[\limtur\frac{5+(-1)^n}{7^n}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי 
+\[\frac{5+3(-1)^n}{7^n}\leq \frac{8}{7^n}\]
+ונשים לב כי 2 הסדרות הנ"ל חיוביות ושהטור של הסדרה מימין מתכנסת (משפט שראינו בתרגול שעבר) ולכן ממבחן ההשוואה הראשון נקבל שהטור שלנו גם מתכנס.
+\end{proof}
+
+\begin{theorem}[מבחן ההשוואה השני]
+אם יש לנו שני טורים 
+$\limtur a_n, \limtur b_n$
+חיוביים וקיימים 
+$\alpha,\beta>0$
+כך שלבסוף מתקיים 
+\[\alpha<\frac{a_n}{b_n}<\beta\]
+אז הטורים מתכנסים ומתבדרים יחדיו
+\end{theorem}
+
+\begin{exercise}
+ קבעו האם הטור הבא מתכנס או מתבדר
+\[\limtur \frac{1}{n\sqrt[n]{n}}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי אנחנו כבר יודעים כי
+$\sqrt[n]{n}\goesto 1$
+ולכן אינטואיטיבית הטור אמור להיות פחות או יותר כמו הטור של 
+$\frac{1}{n}$
+נשים לב כי ממבחן ההשוואה ראשון לא נוכל להשוות עם שום פולינום "רציונלי" ולכן צריכים משפט אחר. אם ניקח 
+\[a_n:=\frac{1}{n\sqrt[n]{n}}, \quad b_n = \frac{1}{n}\]
+נקבל כי 
+\[\frac{a_n}{b_n}\goesto 1\]
+ולכן לבסוף נקבל כי 
+\[\frac{1}{2}<\frac{a_n}{b_n}<\frac{3}{2}\]
+ומכיוון שמדובר בטורים חיוביים נול לקבל ממבחן ההשוואה השני כי הטורים מתכנסים ומתבדרים יחדיו. ידוע כי הטור השני מתבדר ולכן גם שלנו.
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר
+\[\limtur \frac{n}{(2n+3)(4n-5)}\]
+\end{exercise}
+
+\begin{proof}
+מבחינת סדרי גודל נראה כי הטור הזה גם דומה לטור ההרמוני. לכן נשווה את הסדרות - 
+\[\frac{a_n}{b_n} = \frac{\frac{n}{(2n+3)(4n-5)}}{\frac{1}{n}} = \frac{n^2}{8n^2+2n-15}\goesto \frac{1}{8}\]
+נשים לב כי מהתוצאה הקודמת ניתן לקבל שלבסוף גם מתקיים
+\[0<\frac{1}{16}<\frac{a_n}{b_n}<\frac{3}{16}\]
+ולכן נקבל כי ניתן להפעיל את מבחן ההשוואה השני שני הטורים מתכנסים ומתבדרים יחדיו ולכן מכיוון שהטור ההרמוני מתבדר גם הטור שלנו יתבדר.
+\end{proof}
+
+\begin{exercise}
+ קבעו האם הטור הבא מתכנס או מתבדר
+ \[\limtur\frac{\sqrt[7]{n^{14}+20n+1}}{(1+2n)^5}\]
+\end{exercise}
+
+\begin{proof}
+ניתן לראות שמבחינת סדר גודל המונה הוא בערך 
+$n^2$
+והמכנה הוא מסדר גודל של 
+$n^5$
+ולכן כדאי לעשות השוואה עם 
+$\frac{1}{n^3}$.
+נראה מה המנה בין הסדרות - 
+\[\frac{\frac{\sqrt[7]{n^{14}+20n+1}}{(1+2n)^5}}{\frac{1}{n^3}} = n^3\frac{\sqrt[7]{n^{14}+20n+1}}{(1+2n)^5} = \frac{\sqrt[7]{1+\frac{20}{n^13}+\frac{1}{n^14}}}{\left(2+\frac{1}{n}\right)^5}\goesto \frac{1}{32}\]
+הסדרות חיוביות ומהתוצאה הקודמת נקבל שלבסוף מתקיים 
+\[\frac{1}{64}<\frac{a_n}{b_n}<\frac{3}{64}\]
+ולכן הטורים מתכנסים ומתבדרים יחדיו ומכיוון שהטור 
+\[\limtur\frac{1}{n^3}\]
+מתכנס גם הטור שלנו יתכנס.
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או לא
+\[\limtur\frac{n!}{(n+3)!}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי 
+\[\frac{n!}{(n+3)!}=\frac{1}{(n+1)(n+2)(n+3)}\]
+ולכן מאותם שיקולים נקבל שמהשוואה עם הטור 
+$\frac{1}{n^3}$
+נקבל שגם הטור שלנו מתכנס.
+\end{proof}
+
+\begin{theorem}[מבחן קושי]
+יהי טור חיובי ממש 
+$\limtur a_n$
+\begin{itemize}
+\item אם מתקיים 
+ $\limsup \sqrt[n]{a_n}<1$
+ אזי הטור מתכנס
+ 
+\item אם מתקיים 
+ $\limsup \sqrt[n]{a_n}>1$
+ אזי הטור מתבדר
+\item אם מתקיים 
+ $\limsup \sqrt[n]{a_n}=1$
+ לא ניתן לקבוע אם הטור מתכנס או מתבדר.
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[מבחן דלמבר/מבחן המנה]
+יהי טור חיובי ממש 
+$\limtur a_n$
+\begin{itemize}
+\item אם 
+$\limsup\frac{a_{n+1}}{a_n}<1$
+אזי הטור מתכנס.
+\item אם 
+$\liminf\frac{a_{n+1}}{a_n}>1$
+אזי הטור מתבדר.
+\end{itemize}
+\end{theorem}
+
+\begin{exercise}
+קבעו אם הטור הבא מתכנס או מתבדר 
+\[\limtur \frac{n^3}{\log^n 3}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי 
+\[\frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^3}{\log^{n+1}3}}{\frac{n^3}{\log^n 3}}= \frac{\left(\frac{n+1}{n}\right)^3}{\log 3}\goesto \frac{1}{\log 3}<1\]
+ולכן ממבחן המנה נקבל כי הטור מתכנס (ניתן לעשות גם עם מבחן קושי).
+\end{proof}
+
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר 
+\[\limtur \frac{2^n(n+1)}{n!}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי 
+\[\frac{a_{n+1}}{a_n} = \frac{2(n+2)}{(n+1)^2}\goesto 0\]
+ולכן ממבחן דלאמבר נקבל כי הטור מתכנס. שוב ניתן לפתור את התרגיל הזה בעזרת מבחן קושי.
+\end{proof}
+
+\begin{exercise}
+קבעו האם הטור הבא מתכנס או מתבדר
+\[\limtur \frac{2^{n-1}}{n^n}\]
+\end{exercise}
+
+\begin{proof}
+נשים לב כי 
+\[\sqrt[n]{a_n} =\frac{2^{\frac{n-1}{n}}}{n}\goesto 0\]
+ולכן ממבחן קושי נקבל שהטור מתכנס. תרגיל לבית הראו כי זה מתכנס בעזרת מבחן המנה.
+\end{proof}
+
+\begin{exercise}
+קבעו את התכנסות הטור של הסדרה הבאה
+\[a_n:=\begin{cases}\frac{1}{2^n\cdot n}, & n\in\mathbb{N} \\ \frac{1}{2^{n-1}(n+1)}, & \text{אחרת} \end{cases}\]
+\end{exercise}
+
+\begin{proof}
+ננסה לראות אם מבחן המנה עובד. לכן נתבונן בסדרה 
+$\frac{a_{n+1}}{a_n}$.
+נשים לב כי מתקיים 
+\[\frac{a_{n+1}}{a_n} = \begin{cases}\frac{\frac{1}{2^n(n+2)}}{\frac{1}{n2^n}}=\frac{n}{n+2}\goesto 1 ,& n\in 2\mathbb{N} \\ \frac{\frac{1}{2^{n+1}(n+1)}}{\frac{1}{2^{n-1}(n+1)}} = \frac{1}{4}\goesto \frac{1}{4}, & \text{אחרת}\end{cases}\]
+מכיוון שכל האינדקסים הם זוגיים או אי-זוגיים נקבל שזה כל הגבולות החלקיים הם 1 או רבע. ובפרט לא נוכל לקבוע ממבחן המנה אם הטור מתכנס. לכן ננסה את מבחן קושי.
+\[\sqrt[n]{a_n}=\begin{cases} \frac{1}{2\sqrt[n]{n}}\goesto \frac{1}{2},& \text{זוגי} \\ \sqrt[n]{\frac{1}{2^{n-1}(n+1)}}\goesto \frac{1}{2}, & \text{אחרת}\end{cases}\]
+ולכן הגבול של סדרת השורשים מתכנסת לחצי וממבחן קושי הטור מתכנסים
+\end{proof}
+
+\begin{theorem}[מבחן העיבוי]
+אם סדרה היא חיובית ומונוטונית יורדת לאפס אז הטורים הבאים מתכנסים ומתבדרים יחדיו - 
+\[\limtur a_n, \limtur 2^n a_{2^n}\]
+השימוש העיקרי של זה הוא כדי להיפטר מלוגים.
+\end{theorem}
+
+\section{סוגי התכנסות}
+\begin{definition}
+טור 
+$\limtur a_n$
+מתכנס בהחלט אם טור הערכים המוחלטים מתכנס - 
+\[\limtur |a_n|\]
+נאמר כי טור מתכנס בתנאי אם ורק אם הוא מתכנס אך לא בהחלט.
+\end{definition}
+
+\begin{theorem}[משפט לייבניץ]
+אם סדרה מתכנסת לאפס מונוטונית אז הטור הבא גם מתכנס 
+\[\limtur (-1)^n a_n\]
+\end{theorem}
+
+\begin{exercise}
+קבעו התכנסות בהחלט/בתנאי/התבדרות של הטור הבא
+\[\limtur (-1)^{n+1} \frac{n^{10}}{(n+2)!}\]
+\end{exercise}
+
+\begin{proof}
+נבדוק קודם התכנסות בהחלט. הטור של הערכים המוחלטים הוא 
+\[\limtur \frac{n^{10}}{(n+2)!}\]
+נשים לב כי מתקיים 
+\[\frac{a_{n+1}}{a_n} = \frac{(n+1)^{10}\cdot (n+2)!)}{n^{10}\cdot (n+3)!} = \left(\frac{n+1}{n}\right)^{10}\cdot \frac{1}{n+3}\goesto 0\]
+ולכן ממבחו המנה הטור של הערכים המוחלטים מתכנס ובפרט הטור המקורי מתכנס בהחלט. 
+\end{proof}
+
+\begin{exercise}
+קבעו התכנסות בהחלט/בתנאי/התבדרות של הטור הבא
+\[\limturstart{2} (-1)^{n} \frac{1}{n\log n}\]
+\end{exercise}
+
+\begin{proof}
+נבדוק התכנסות בהחלט. נשים לב כי ההסדרה של הטור מונוטונית יורדת ומתכנסת ל0. לכן נשתמש במבחן העיבוי - 
+\[\limturstart{2} 2^n\frac{1}{2^n\cdot\log 2^n}  = \limturstart{2}\frac{1}{n\log 2}\]
+ממבחן ההשוואה הטור הזה יתבדר ולכן  גם הטור "המעובה" יתבדר ובפרט גם הטור של הערכים המוחלטים יתבדר ובפרט הטור לא מתכנס בהחלט. עכשיו נבדוק התכנסות של הטור המקורי. נשים לב כי מלייבניץ מכיוון שהסדרה הבאה מונוטונית יורדת ל0
+\[\frac{1}{n\log n}\]
+הטור המקורי שלנו יתכנס. לכן הטור מתכנס אך רק בתנאי.
+\end{proof}
+
+\begin{exercise}
+קבעו התכנסות בתנאי/בהחלט/התבדרות של הטור הבא
+\[\limtur (-1)^{n+1}\frac{1}{n}\left(1+\frac{1}{n}\right)^n\]
+\end{exercise}
+
+\begin{proof}
+נבדוק קודם התכנסות בהחלט. כלומר למצוא אם הטור הבא מתכנס או לא
+\[\limtur \frac{1}{n}\left(1+\frac{1}{n}\right)^n\]
+נשים לב כי הסדרה מימין תהיה בערך 
+$e$
+לבסוף ולכן לפחות אינטואיטיביתכדאי להשוות עם 
+$\frac{1}{n}$
+כלומר 
+\[\frac{\frac{1}{n}\left(1+\frac{1}{n}\right)^n}{\frac{1}{n}}=\left(1+\frac{1}{n}\right)^n\goesto e\]
+ולכן ממבחן ההשוואה השני נקבל כי הטורים מתכנסים ומתבדרים יחדיו ולכן הטור של הערכים המוחלטים יתבדר. נרצה להשתמש בלייבניץ על מנת להראות התכנסות בתנאי. נשים לב כי
+\begin{align*}
+\frac{a_{n+1}}{a_n} &= \frac{\frac{1}{n+1}\left(1+\frac{1}{n+1}\right)^{n+1}}{\frac{1}{n}\left(1+\frac{1}{n}\right)^n} = \frac{\frac{1}{n+1}\left(\frac{n+2}{n+1}\right)^{n+1}}{\frac{1}{n}\left(\frac{n+1}{n}\right)^n} = \\ &= \frac{(n+2)^{n+1}\cdot n^{n+1}}{(n+1)^{2n+2}} = \left(\frac{n^2+2n}{n^2+2n+1}\right)^{n+1}<1
+\end{align*}
+ולכן הסדרה מונוטונית יורדת ולפי לייבניץ הטור יתכנס בתנאי.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
